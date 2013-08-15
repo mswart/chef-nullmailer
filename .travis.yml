@@ -7,4 +7,9 @@ gemfile:
   - spec/support/gemfiles/Gemfile.chef10
   - spec/support/gemfiles/Gemfile.chef11
 
+matrix:
+  exclude:
+    - rvm: 2.0.0
+      gemfile: spec/support/gemfiles/Gemfile.chef10
+
 before_script: ln -s chef-nullmailer ../nullmailer
