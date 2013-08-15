@@ -1,6 +1,8 @@
 chef-nullmailer
 ===============
 
+[![Build Status](https://travis-ci.org/mswart/chef-nullmailer.png)](https://travis-ci.org/mswart/chef-nullmailer)
+
 
 Description
 -----------

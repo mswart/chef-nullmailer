@@ -1,0 +1,10 @@
+language: ruby
+rvm:
+  - 2.0.0
+  - 1.9.3
+
+gemfile:
+  - spec/support/gemfiles/Gemfile.chef10
+  - spec/support/gemfiles/Gemfile.chef11
+
+before_script: ln -s chef-nullmailer ../nullmailer
