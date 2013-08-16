@@ -7,9 +7,9 @@ chef-nullmailer
 Description
 -----------
 
-This (small) cookbook is design to install and configure [Nullmailer](http://untroubled.org/nullmailer/). Nullmailer is like ssmtp a tiny mail transfer agent (MTA). But in contrast to other ones with local queue. Therefore it is significant less likely to lost mails due to (temporally) errors.
+This (small) cookbook is designed to install and configure [Nullmailer](http://untroubled.org/nullmailer/). Nullmailer is like ssmtp a tiny mail transfer agent (MTA). But in contrast to other ones with a local mail queue. Therefore it is significant less likely to lose mails due to (temporally) errors.
 
-The cookbook relies on the distribution package manager to install Nullmailer. Nullmailer is available via all common package manager. But it might be in an older version and therefore missing some features (e.g. tls support added in 1.10).
+The cookbook relies on the distribution package manager to install Nullmailer. Nullmailer is available via all common package managers. But it might be in an older version and therefore missing some features (e.g. TLS support added in [1.10](http://untroubled.org/nullmailer/NEWS)).
 
 
 Requirements
@@ -31,9 +31,9 @@ The cookbooks uses the only attributes under ``node['nullmailer']``.
 
 ### Relay host
 
-* `relayhost` (`"mail.#{node['domain']"`): Remote server to which to send each message
-* `relay_proto` (`'smtp'): Default protocol used to transfer mails the to remote servers.
-* `relay_options`: A dictionary with additional options for the protocol executable. Run `/usr/lib/nullable/$protocol' --help` for argumetn documentation. Keys are parameter names. Use boolean values to enabled/disabled flag attributes for string values for arguments with parameter.
+* `relayhost` (`"mail.#{node['domain']}"`): Remote server to which to send each message
+* `relay_proto` (`'smtp'`): Default protocol used to transfer mails the to remote servers.
+* `relay_options`: A dictionary with additional options for the protocol executable. Run `/usr/lib/nullable/$protocol' --help` for argument documentation. Keys are parameter names. Use boolean values to enable/disable flag attributes for string values for arguments with parameter.
 
 ### Main Options
 
@@ -51,7 +51,7 @@ The cookbooks uses the only attributes under ``node['nullmailer']``.
 
 ### Extended Usage
 
-The cookbook is configurable via nodes attribute. If you need to change to cookbook sources to uses in your way, this is a bug or missing feature. In both, please report this and it will be fixed.
+The cookbook is configurable via node attributes. If you need to change the cookbook sources to uses in your way, this is a bug or missing feature. In both, please report this and it will be fixed.
 
 If you want to manage a Nullmailer configuration file by in other way and your are restricted by the configuration resources of this cookbook, you can instruct the cookbook to not do certain tasks by setting options under `node['nullmailer']['configure']`:
 
