@@ -22,6 +22,42 @@ The cookbook requires:
 * (**Ubuntu**): The cookbook is tested on Ubuntu 12.04. Other distributions like Debian should work also. I appreciate feedback about status and errors on other distributions or versions.
 
 
+Usage
+-----
+
+The cookbook has only one recipe `default` installing and configuring Nullmailer. So add to your `run_list` `recipe[nullmailer]`. See to following section for possible attributes to influence the Nullmailer configuration and the cookbook behavior. But in most cases no changes are needed.
+
+The cookbooks uses the only attributes under ``node['nullmailer']``.
+
+### Relay host
+
+* `relayhost` (`"mail.#{node['domain']"`): Remote server to which to send each message
+* `relay_proto` (`'smtp'): Default protocol used to transfer mails the to remote servers.
+* `relay_options`: A dictionary with additional options for the protocol executable. Run `/usr/lib/nullable/$protocol' --help` for argumetn documentation. Keys are parameter names. Use boolean values to enabled/disabled flag attributes for string values for arguments with parameter.
+
+### Main Options
+
+* `mailname` (`node['fqdn']`): the mail name (file ``/etc/mailname``). Used as default for identifier for the node for all mail aspects.
+* `adminaddr` (`nil`): If this is set to a non-empty value, all mails to local recipients (localhost or mailname as domain part) are sent instead to this mail address.
+* `defaulthost` (`nil` means `mailname` or `'defaulhost'`): The hostname added to any address missing a host part. `nil` means not create the file - Nullmailer fails back to use the `mailname` file or the string `defaulthost`.
+* `defaultdomain` (`nil` means `mailname`): This string is append to all hostnames without a period except `'localhost'`, including `defaulthost` and `idhost`.
+
+### Expert Options
+
+* `idhost` (`nil` means `defaulhost`): This host name is used for generated message ids. `nil` means not create this file -- Nullmailer uses the canonical version of the `defaulthost` option.
+* `pausetime` (`nil` means Nullmailer default): The number of seconds to pause between successive queue runs when there are messages in the queue.
+* `sendtimeout` (`nil` means Nullmailer default): The number of seconds to wait for a remote module listed above to complete sending a message before killing it and trying again.
+* `helohost` (`nil` means `me`): The hostname uses for `helo` in smtp sessions.
+
+### Extended Usage
+
+The cookbook is configurable via nodes attribute. If you need to change to cookbook sources to uses in your way, this is a bug or missing feature. In both, please report this and it will be fixed.
+
+If you want to manage a Nullmailer configuration file by in other way and your are restricted by the configuration resources of this cookbook, you can instruct the cookbook to not do certain tasks by setting options under `node['nullmailer']['configure']`:
+
+* `mailname`: whether manage `/etc/mailname` with this cookbook.
+* `remotes`: configure `remotes` file
+
 Contributing
 ------------
 
