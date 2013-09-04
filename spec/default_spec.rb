@@ -202,5 +202,10 @@ describe 'nullmailer::default' do
       chef_runner.node.set['nullmailer']['configure']['remotes'] = false
       expect(chef_run).to_not create_file remotes_file
     end
+
+    it 'should secure the remotes file cause passwords' do
+      expect(chef_run.file(remotes_file)).to be_owned_by('mail', 'mail')
+      expect(chef_run.file(remotes_file).mode).to eq(00600)
+    end
   end
 end
