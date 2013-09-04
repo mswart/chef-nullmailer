@@ -57,9 +57,9 @@ file '/etc/nullmailer/remotes' do
     options += "=#{value}" if value.is_a?(String) or value.is_a?(Fixnum)
     options
   end)
-  user 'root'
-  group 0
-  mode 00644
+  user 'mail'
+  group 'mail'
+  mode 00600
   action :create
   only_if { node['nullmailer']['configure']['remotes'] }
 end
